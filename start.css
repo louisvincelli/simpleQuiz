@@ -1,0 +1,49 @@
+:root {
+    --purple: #800080;
+    --black: #000000;
+    --azure: #F0FFFF;
+}
+
+* {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.conatiner {
+    align-items: center;
+    justify-content: center;
+}
+
+.score{
+    font-size: 30px;
+}
+
+.score-prefix {
+    font-size: 30px;
+}
+
+#question {
+    display: flex;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.choice-container {
+    display: flex;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 0px;
+    justify-content: left;
+    color: var(--azure);
+    background-color: var(--purple);
+    width: 100px;
+}
+
+.choice-prefix{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
