@@ -5,7 +5,6 @@ var scoreText = document.querySelector('#score');
 let currentQuestion = {}
 let acceptingAnswers = true
 let score = 0
-let questionCounter = 0
 let availableQuestions = []
 
 let questions = [
@@ -56,22 +55,19 @@ var SCORE_POINTS = 1
 var MAX_QUESTIONS = 5
 
 startQuiz = () => {
-    questionCounter = 0
     score = 0
     availableQuestions = [...questions]
     getNewQuestion()
 }
 
+
+// function for new question
 getNewQuestion =() => {
-    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+    if(availableQuestions.length === 0) {
         localStorage.setItem('mostRecentScore', score)
 
         return window.location.assign('./end.html')
     }
-
-    questionCounter++
-    //progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
-    //progressBarFull.style.width= `${(questionCounter/MAX_QUESTIONS) * 100}$`
 
     var questionsIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
@@ -91,21 +87,21 @@ choices.forEach(choice => {
     choice.addEventListener('click', function(event) {
         if(!acceptingAnswers) return
 
-        //event function and using event.target or e.target with e =>
+        //event function 
 
         acceptingAnswers = false
         var selectedChoice = event.target
         var selectedAnswer = selectedChoice.dataset['number']
 
-        //? and : are if or else function for the selected Answers.
+        //? is if and : is else for the selected Answers.
 
         let classtoApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
+        //if the selected answer is correct then increment points
 
         if(classtoApply === 'correct') {
             incrementScore(SCORE_POINTS)
         }
-
-        //selectedChoice.parentElement.classList.add(classToApply)
 
         setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classtoApply)
@@ -115,9 +111,13 @@ choices.forEach(choice => {
     })
 })
 
+//increasescore. the scoretext is the score.
+
 incrementScore = num => {
     score +=num
     scoreText.innerText = score
 }
+
+//start entire quiz function
 
 startQuiz()

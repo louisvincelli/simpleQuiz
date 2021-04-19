@@ -3,5 +3,7 @@ var highScores = JSON.parse(localStorage.getItem('highScores'))
 
 highScoresList.innerHTML = 0
 highScores.map(score => {
-    return '<li class="high-score"></li>'
+    return '<ul class="high-score"></ul>'
 }).join('')
+
+//function to put the highscore into the high-score class listed.
